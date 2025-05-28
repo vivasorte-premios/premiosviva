@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Site do William</title>
+</head>
+<body>
+  <h1>Olá, esse é meu primeiro site!</h1>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viva Sorte - Checkout</title>
+    <meta name="description" content="Viva Sorte - Participe do sorteio com 2 milhões em prêmios! Escolha seus números da sorte por apenas R$ 0,99 cada.">
+    <meta name="keywords" content="loteria, sorteio, viva sorte, prêmios, carros, dinheiro">
+    <style>
+        /* Reset e estilos globais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 240 10% 3.9%;
+            --card: 0 0% 100%;
+            --card-foreground: 240 10% 3.9%;
+            --popover: 0 0% 100%;
+            --popover-foreground: 240 10% 3.9%;
+            --primary: 220 100% 50%;
+            --primary-foreground: 0 0% 100%;
+            --secondary: 240 4.8% 95.9%;
+            --secondary-foreground: 240 5.9% 10%;
+            --muted: 240 4.8% 95.9%;
+            --muted-foreground: 240 3.8% 46.1%;
+            --accent: 240 4.8% 95.9%;
+            --accent-foreground: 240 5.9% 10%;
+            --destructive: 0 84.2% 60.2%;
+            --destructive-foreground: 0 0% 98%;
+            --border: 240 5.9% 90%;
+            --input: 240 5.9% 90%;
+            --ring: 240 5.9% 10%;
+            --radius: 0.5rem;
+            --popular-badge: 220 100% 40%;
+            --popular-badge-text: 0 0% 100%;
+            --popular-border: 220 100% 40%;
+            --price-badge: 220 100% 40%;
+            --price-badge-text: 0 0% 100%;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: white;
+            color: hsl(var(--foreground));
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.5;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 0 5px;
+        }
+
+        /* Header */
+        header {
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 60px;
+            padding: 0 15px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        .search-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            height: 44px;
+            padding: 0 16px;
+            border-radius: 10px;
+            border: 1px solid hsl(var(--border));
+            background-color: transparent;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.15s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .search-button:hover {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        .banner {
+            width: 100%;
+            height: 225px;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        @media (min-width: 768px) {
+            .banner {
+                height: 280px;
+            }
+        }
+
+        .lottery-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 10px;
+            border-bottom: 2px solid hsl(var(--border));
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .draw-date {
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+
+        @media (min-width: 640px) {
+            .draw-date {
+                font-size: 1rem;
+            }
+        }
+
+        .price-info {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .price-text {
+            font-weight: 500;
+            font-size: 0.75rem;
+        }
+
+        @media (min-width: 640px) {
+            .price-text {
+                font-size: 1rem;
+            }
+        }
+
+        .price-badge {
+            background-color: hsl(var(--price-badge));
+            color: hsl(var(--price-badge-text));
+            border-radius: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            font-weight: bold;
+            font-size: 0.75rem;
+        }
+
+        @media (min-width: 640px) {
+            .price-badge {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* Main Content */
+        main {
+            margin-bottom: 16px;
+            width: 100%;
+        }
+
+        .section-title {
+            font-weight: bold;
+            font-size: 1.125rem;
+            margin-bottom: 12px;
+        }
+
+        .ticket-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        @media (min-width: 640px) {
+            .ticket-options {
+                gap: 12px;
+                margin-bottom: 24px;
+            }
+        }
+
+        .ticket-option {
+            position: relative;
+            cursor: pointer;
+            min-width: 100%;
+            text-align: center;
+            padding: 8px;
+            border-radius: 10px;
+            border: 1px solid hsl(var(--border));
+            transition: all 0.2s ease;
+            background-color: white;
+        }
+
+        .ticket-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .ticket-option.popular {
+            border-color: hsl(var(--popular-border));
+            border-width: 2px;
+        }
+
+        .ticket-option.selected {
+            background-color: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+            border-color: hsl(var(--primary));
+        }
+
+        .ticket-quantity {
+            font-size: 22px;
+            font-weight: 600;
+            user-select: none;
+        }
+
+        @media (min-width: 640px) {
+            .ticket-quantity {
+                font-size: 26px;
+            }
+        }
+
+        .popular-badge {
+            background-color: hsl(var(--popular-badge));
+            color: hsl(var(--popular-badge-text));
+            font-size: 11px;
+            padding: 0.25rem 0.5rem;
+            border-radius: 1rem;
+            position: absolute;
+            top: -0.75rem;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        @media (min-width: 640px) {
+            .popular-badge {
+                font-size: 12px;
+            }
+        }
+
+        .quantity-adjuster {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            margin: 16px 0;
+            justify-content: center;
+        }
+
+        .quantity-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            border: 1px solid hsl(var(--border));
+            background-color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quantity-button:hover {
+            background-color: hsl(var(--muted));
+        }
+
+        .quantity-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        @media (min-width: 640px) {
+            .quantity-button {
+                width: 70px;
+                height: 70px;
+            }
+        }
+
+        .quantity-display {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.125rem;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid hsl(var(--border));
+            background-color: white;
+            user-select: none;
+        }
+
+        @media (min-width: 640px) {
+            .quantity-display {
+                font-size: 1.25rem;
+                padding: 8px 16px;
+            }
+        }
+
+        /* Footer Payment */
+        .footer-payment {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 12px 15px;
+            border-top: 2px solid hsl(var(--border));
+            background-color: white;
+        }
+
+        @media (min-width: 768px) {
+            .footer-payment {
+                padding: 20px 40px;
+            }
+        }
+
+        .price-summary {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .quantity-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: hsl(var(--muted-foreground));
+            user-select: none;
+        }
+
+        @media (min-width: 640px) {
+            .quantity-label {
+                font-size: 12px;
+            }
+        }
+
+        .total-price {
+            font-size: 1.125rem;
+            font-weight: 700;
+            user-select: none;
+        }
+
+        @media (min-width: 640px) {
+            .total-price {
+                font-size: 1.25rem;
+            }
+        }
+
+        .payment-button {
+            height: 40px;
+            padding: 0 16px;
+            background-color: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .payment-button:hover {
+            background-color: hsl(220 100% 45%);
+            transform: translateY(-1px);
+        }
+
+        @media (min-width: 640px) {
+            .payment-button {
+                height: 48px;
+                padding: 0 24px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Footer */
+        .page-footer {
+            width: 100%;
+            max-width: 500px;
+            min-height: 200px;
+            margin-bottom: 24px;
+            padding-bottom: 0;
+            font-size: 0.75rem;
+        }
+
+        @media (min-width: 640px) {
+            .page-footer {
+                min-height: 400px;
+                margin-bottom: 40px;
+                font-size: 0.875rem;
+            }
+        }
+
+        .footer-logo-section {
+            min-height: 60px;
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            align-items: center;
+            margin: 16px 0;
+        }
+
+        .footer-content {
+            min-height: 200px;
+            margin: 0 24px;
+        }
+
+        .legal-text {
+            font-size: 12px;
+            text-align: justify;
+            min-height: 200px;
+            line-height: 1.4;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-top: 16px;
+            min-height: 24px;
+        }
+
+        .footer-links-text {
+            font-size: 0.875rem;
+            text-align: center;
+        }
+
+        .footer-links-container {
+            display: flex;
+            gap: 32px;
+        }
+
+        .footer-link {
+            font-size: 0.75rem;
+            color: hsl(var(--primary));
+            text-decoration: underline;
+        }
+
+        .version-info {
+            min-height: 80px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .version-text {
+            font-size: 0.75rem;
+            color: hsl(var(--muted-foreground));
+        }
+
+        /* Virtual Assistant */
+        .assistant-button {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 50;
+            transition: all 0.2s ease;
+        }
+
+        .assistant-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (min-width: 640px) {
+            .assistant-button {
+                bottom: 24px;
+                right: 24px;
+                width: 56px;
+                height: 56px;
+            }
+        }
+
+        .assistant-dialog {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 95vw;
+            max-width: 400px;
+            height: 85vh;
+            max-height: 600px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .assistant-header {
+            padding: 16px;
+            border-bottom: 1px solid hsl(var(--border));
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: hsl(var(--muted));
+        }
+
+        .assistant-title {
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .assistant-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.25rem;
+            padding: 4px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+
+        .assistant-close:hover {
+            background-color: hsl(var(--accent));
+        }
+
+        .assistant-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .message {
+            display: flex;
+            gap: 8px;
+            max-width: 85%;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+            align-self: flex-end;
+        }
+
+        .message-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: hsl(var(--muted));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            color: hsl(var(--muted-foreground));
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+
+        .message.user .message-avatar {
+            background-color: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+        }
+
+        .message-content {
+            padding: 12px;
+            border-radius: 12px;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+        .message.user .message-content {
+            background-color: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+        }
+
+        .message:not(.user) .message-content {
+            background-color: hsl(var(--muted));
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 12px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: hsl(var(--muted-foreground));
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        .assistant-footer {
+            padding: 16px;
+            border-top: 1px solid hsl(var(--border));
+            background-color: white;
+        }
+
+        .message-form {
+            display: flex;
+            gap: 8px;
+        }
+
+        .message-input {
+            flex: 1;
+            padding: 10px 12px;
+            border-radius: 6px;
+            border: 1px solid hsl(var(--border));
+            font-size: 0.875rem;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .message-input:focus {
+            border-color: hsl(var(--primary));
+        }
+
+        .send-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            background-color: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .send-button:hover {
+            background-color: hsl(220 100% 45%);
+        }
+
+        .send-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 90;
+            backdrop-filter: blur(2px);
+        }
+
+        /* Utility classes */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Loading animation */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Focus styles for accessibility */
+        button:focus,
+        input:focus {
+            outline: 2px solid hsl(var(--primary));
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-top">
+                <a href="#" aria-label="Viva Sorte - Página inicial">
+                    <img src="https://lottocheck-fprefq2d.on.adaptive.ai/cdn/2UrTa9Czgf722ikVRrBDHVYWY64wjrjd.png" alt="Logo Viva Sorte" class="logo">
+                </a>
+                <button class="search-button" onclick="alert('Funcionalidade em breve!')" aria-label="Minhas compras">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <span>Minhas compras</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M7.9165 5L12.9165 10L7.9165 15" stroke="currentColor" stroke-width="1.66667"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Banner -->
+            <img src="https://lottocheck-fprefq2d.on.adaptive.ai/cdn/cBeFKcCFQkexKXQ7axqUam3dtdQURwge.png" alt="Banner promocional - 2 Milhões em Prêmios" class="banner">
+
+            <!-- Lottery Info -->
+            <div class="lottery-info">
+                <div>
+                    <span class="draw-date">🍀 Sorteio: 01/06/2025, 17:00</span>
+                </div>
+                <div class="price-info">
+                    <span class="price-text">Por apenas</span>
+                    <span class="price-badge">R$ 0,99</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <section>
+                <div style="padding: 0 15px;">
+                    <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                        <h1 class="section-title">Escolha de Números</h1>
+                    </div>
+
+                    <!-- Ticket Options -->
+                    <div class="ticket-options">
+                        <div class="ticket-option" onclick="selectQuantity(10)" data-quantity="10" role="button" tabindex="0" aria-label="Selecionar 10 números">
+                            <p class="ticket-quantity">+10</p>
+                        </div>
+                        <div class="ticket-option" onclick="selectQuantity(20)" data-quantity="20" role="button" tabindex="0" aria-label="Selecionar 20 números">
+                            <p class="ticket-quantity">+20</p>
+                        </div>
+                        <div class="ticket-option" onclick="selectQuantity(30)" data-quantity="30" role="button" tabindex="0" aria-label="Selecionar 30 números">
+                            <p class="ticket-quantity">+30</p>
+                        </div>
+                        <div class="ticket-option popular" onclick="selectQuantity(50)" data-quantity="50" role="button" tabindex="0" aria-label="Selecionar 50 números - Mais popular">
+                            <p class="ticket-quantity">+50</p>
+                            <div class="popular-badge">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
+                                </svg>
+                                <span>Mais popular</span>
+                            </div>
+                        </div>
+                        <div class="ticket-option" onclick="selectQuantity(100)" data-quantity="100" role="button" tabindex="0" aria-label="Selecionar 100 números">
+                            <p class="ticket-quantity">+100</p>
+                        </div>
+                        <div class="ticket-option" onclick="selectQuantity(200)" data-quantity="200" role="button" tabindex="0" aria-label="Selecionar 200 números">
+                            <p class="ticket-quantity">+200</p>
+                        </div>
+                    </div>
+
+                    <!-- Quantity Adjuster -->
+                    <div class="quantity-adjuster">
+                        <button class="quantity-button" onclick="decrementQuantity()" aria-label="Diminuir quantidade" id="decrement-btn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                        </button>
+                        <div id="quantity-display" class="quantity-display" role="status" aria-live="polite" aria-label="Quantidade selecionada">50</div>
+                        <button class="quantity-button" onclick="incrementQuantity()" aria-label="Aumentar quantidade" id="increment-btn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer Payment Section -->
+            <div class="footer-payment">
+                <div class="price-summary">
+                    <span id="quantity-label" class="quantity-label">50 Números</span>
+                    <span id="total-price" class="total-price">R$ 49,50</span>
+                </div>
+                <button class="payment-button" onclick="goToPayment()" aria-label="Ir para pagamento">
+                    Ir para pagamento
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <div class="page-footer">
+        <div class="footer-content">
+            <div class="footer-logo-section">
+                <img width="60" height="60" alt="Logo Viva Sorte" src="https://lottocheck-fprefq2d.on.adaptive.ai/cdn/2UrTa9Czgf722ikVRrBDHVYWY64wjrjd.png">
+            </div>
+
+            <div>
+                <p class="legal-text">
+                    Este bilhete de loteria está autorizado com base na portaria publicada pela LOTEP, Autorização LTP-PRC-2024/00642. Antes de contratar, consulte o regulamento do produto. É proibida a venda para menores de 18 anos. Os sorteios e en...
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <span class="footer-links-text">Consulte nossas condições gerais e regulamento</span>
+                <div class="footer-links-container">
+                    <a href="#" class="footer-link" onclick="alert('Regulamento em breve!')">Regulamento</a>
+                </div>
+            </div>
+
+            <div class="version-info">
+                <p class="version-text">v2.0.0</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Virtual Assistant -->
+    <button class="assistant-button" onclick="openAssistant()" aria-label="Abrir assistente virtual">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+    </button>
+
+    <div class="modal-backdrop" id="backdrop" onclick="closeAssistant()" aria-hidden="true"></div>
+
+    <div class="assistant-dialog" id="assistant-dialog" role="dialog" aria-labelledby="assistant-title" aria-modal="true">
+        <div class="assistant-header">
+            <div class="assistant-title" id="assistant-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 8V4H8"></path>
+                    <rect width="16" height="12" x="4" y="8" rx="2"></rect>
+                    <path d="M2 14h2"></path>
+                    <path d="M20 14h2"></path>
+                    <path d="M15 13v2"></path>
+                    <path d="M9 13v2"></path>
+                </svg>
+                Assistente Virtual
+            </div>
+            <button class="assistant-close" onclick="closeAssistant()" aria-label="Fechar assistente">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <div class="assistant-messages" id="messages" role="log" aria-live="polite">
+            <div class="message">
+                <div class="message-avatar">A</div>
+                <div class="message-content">
+                    Olá! Sou seu assistente virtual da Viva Sorte. Como posso ajudar você hoje?
+                </div>
+            </div>
+        </div>
+
+        <div class="assistant-footer">
+            <form class="message-form" id="message-form" onsubmit="sendMessage(event)">
+                <input type="text" class="message-input" id="message-input" placeholder="Digite sua mensagem..." aria-label="Digite sua mensagem" autocomplete="off">
+                <button type="submit" class="send-button" id="send-button" aria-label="Enviar mensagem">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Configurações globais
+        const CONFIG = {
+            ticketOptions: [10, 20, 30, 50, 100, 200],
+            pricePerTicket: 0.99,
+            paymentUrls: {
+                10: 'https://pay.pagamentosprotegidos.com/checkout/96f397c9-eae3-440c-a87c-eaba806af6be',
+                20: 'https://pay.pagamentosprotegidos.com/checkout/fb32bd1b-8061-44a2-a0f9-1bc1f9e129e3',
+                30: 'https://pay.pagamentosprotegidos.com/checkout/ac00df79-9c2d-4e44-8231-ab48849f35c2',
+                50: 'https://pay.pagamentosprotegidos.com/checkout/42676fbb-e2a3-403f-af28-0a5451995140',
+                100: 'https://pay.pagamentosprotegidos.com/checkout/fae0dd0f-c471-438b-a3a3-c27765642876',
+                200: 'https://pay.pagamentosprotegidos.com/checkout/c5e5254f-30c3-408b-9d0e-b61a9c5a6129'
+            },
+            assistantResponses: [
+                'Olá! Como posso ajudar você com a Viva Sorte?',
+                'O sorteio acontecerá no dia 01/06/2025 às 17:00.',
+                'Cada número custa apenas R$ 0,99.',
+                'Quanto mais números você adquirir, maiores são suas chances de ganhar!',
+                'A opção mais popular é de 50 números por R$ 49,50.',
+                'Você pode escolher entre 10, 20, 30, 50, 100 ou 200 números.',
+                'Nossos prêmios incluem carros de luxo e muito dinheiro!',
+                'O sorteio é autorizado pela LOTEP com a autorização LTP-PRC-2024/00642.',
+                'Posso ajudar com mais alguma informação sobre o sorteio?',
+                'Para participar, basta escolher seus números e fazer o pagamento.',
+                'Todos os sorteios são realizados de forma transparente e legal.',
+                'Você receberá confirmação da sua participação após o pagamento.'
+            ]
+        };
+
+        // Estado da aplicação
+        let currentQuantity = 50;
+        let isTyping = false;
+
+        // Utilitários
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }).format(value);
+        }
+
+        function updateDisplay() {
+            const quantityDisplay = document.getElementById('quantity-display');
+            const quantityLabel = document.getElementById('quantity-label');
+            const totalPrice = document.getElementById('total-price');
+            const decrementBtn = document.getElementById('decrement-btn');
+            const incrementBtn = document.getElementById('increment-btn');
+            
+            if (quantityDisplay) quantityDisplay.textContent = currentQuantity;
+            if (quantityLabel) quantityLabel.textContent = `${currentQuantity} Números`;
+            if (totalPrice) totalPrice.textContent = formatCurrency(currentQuantity * CONFIG.pricePerTicket);
+            
+            // Atualizar estado dos botões
+            const currentIndex = CONFIG.ticketOptions.indexOf(currentQuantity);
+            if (decrementBtn) decrementBtn.disabled = currentIndex <= 0;
+            if (incrementBtn) incrementBtn.disabled = currentIndex >= CONFIG.ticketOptions.length - 1;
+            
+            // Atualizar seleção visual
+            updateTicketOptionsDisplay();
+        }
+
+        function updateTicketOptionsDisplay() {
+            const options = document.querySelectorAll('.ticket-option');
+            options.forEach(option => {
+                const quantity = parseInt(option.dataset.quantity);
+                if (quantity === currentQuantity) {
+                    option.classList.add('selected');
+                } else {
+                    option.classList.remove('selected');
+                }
+            });
+        }
+
+        // Funções de quantidade
+        function selectQuantity(quantity) {
+            if (CONFIG.ticketOptions.includes(quantity)) {
+                currentQuantity = quantity;
+                updateDisplay();
+                
+                // Feedback visual
+                const option = document.querySelector(`[data-quantity="${quantity}"]`);
+                if (option) {
+                    option.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        option.style.transform = '';
+                    }, 150);
+                }
+            }
+        }
+
+        function incrementQuantity() {
+            const currentIndex = CONFIG.ticketOptions.indexOf(currentQuantity);
+            if (currentIndex < CONFIG.ticketOptions.length - 1) {
+                currentQuantity = CONFIG.ticketOptions[currentIndex + 1];
+                updateDisplay();
+            }
+        }
+
+        function decrementQuantity() {
+            const currentIndex = CONFIG.ticketOptions.indexOf(currentQuantity);
+            if (currentIndex > 0) {
+                currentQuantity = CONFIG.ticketOptions[currentIndex - 1];
+                updateDisplay();
+            }
+        }
+
+        // Função de pagamento
+        function goToPayment() {
+            const paymentUrl = CONFIG.paymentUrls[currentQuantity];
+            
+            if (paymentUrl) {
+                // Adicionar classe loading temporariamente
+                const button = event.target;
+                button.classList.add('loading');
+                button.textContent = 'Redirecionando...';
+                
+                // Abrir URL de pagamento em nova aba
+                window.open(paymentUrl, '_blank');
+                
+                // Restaurar botão após 2 segundos
+                setTimeout(() => {
+                    button.classList.remove('loading');
+                    button.textContent = 'Ir para pagamento';
+                }, 2000);
+                
+                // Analytics (se disponível)
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'payment_attempt', {
+                        'event_category': 'ecommerce',
+                        'event_label': `${currentQuantity}_numbers`,
+                        'value': currentQuantity * CONFIG.pricePerTicket
+                    });
+                }
+            } else {
+                alert('Erro ao processar pagamento. Por favor, tente novamente.');
+            }
+        }
+
+        // Funções do assistente virtual
+        function openAssistant() {
+            const dialog = document.getElementById('assistant-dialog');
+            const backdrop = document.getElementById('backdrop');
+            
+            dialog.style.display = 'flex';
+            backdrop.style.display = 'block';
+            
+            // Focar no input
+            setTimeout(() => {
+                const input = document.getElementById('message-input');
+                if (input) input.focus();
+            }, 100);
+            
+            // Scroll para o final das mensagens
+            scrollToBottom();
+        }
+
+        function closeAssistant() {
+            const dialog = document.getElementById('assistant-dialog');
+            const backdrop = document.getElementById('backdrop');
+            
+            dialog.style.display = 'none';
+            backdrop.style.display = 'none';
+        }
+
+        function sendMessage(event) {
+            event.preventDefault();
+            
+            if (isTyping) return;
+            
+            const input = document.getElementById('message-input');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Adicionar mensagem do usuário
+            addMessage(message, 'user');
+            input.value = '';
+            
+            // Simular digitação do assistente
+            showTypingIndicator();
+            
+            // Resposta do assistente após delay
+            setTimeout(() => {
+                hideTypingIndicator();
+                
+                // Escolher resposta baseada na mensagem
+                const response = getAssistantResponse(message);
+                addMessage(response, 'assistant');
+            }, 1000 + Math.random() * 2000); // 1-3 segundos
+        }
+
+        function getAssistantResponse(userMessage) {
+            const message = userMessage.toLowerCase();
+            
+            // Respostas específicas baseadas em palavras-chave
+            if (message.includes('preço') || message.includes('valor') || message.includes('custa')) {
+                return 'Cada número custa apenas R$ 0,99. Você pode escolher entre 10, 20, 30, 50, 100 ou 200 números!';
+            }
+            
+            if (message.includes('sorteio') || message.includes('quando') || message.includes('data')) {
+                return 'O sorteio acontecerá no dia 01/06/2025 às 17:00. Não perca essa oportunidade!';
+            }
+            
+            if (message.includes('prêmio') || message.includes('ganhar') || message.includes('prémio')) {
+                return 'Temos 2 milhões em prêmios! Incluindo carros de luxo como Porsche, RAM e Audi, além de muito dinheiro!';
+            }
+            
+            if (message.includes('como') || message.includes('participar') || message.includes('comprar')) {
+                return 'É muito fácil! Escolha a quantidade de números, clique em "Ir para pagamento" e complete sua compra. Boa sorte!';
+            }
+            
+            if (message.includes('legal') || message.includes('autorização') || message.includes('lotep')) {
+                return 'Sim! Este sorteio é totalmente legal e autorizado pela LOTEP com a autorização LTP-PRC-2024/00642.';
+            }
+            
+            if (message.includes('popular') || message.includes('recomenda') || message.includes('melhor')) {
+                return 'A opção mais popular é de 50 números por R$ 49,50. É um bom equilíbrio entre investimento e chances de ganhar!';
+            }
+            
+            // Resposta aleatória se não houver palavra-chave específica
+            return CONFIG.assistantResponses[Math.floor(Math.random() * CONFIG.assistantResponses.length)];
+        }
+
+        function addMessage(content, role) {
+            const messagesContainer = document.getElementById('messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${role === 'user' ? 'user' : ''}`;
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.textContent = role === 'user' ? 'U' : 'A';
+            
+            const messageContent = document.createElement('div');
+            messageContent.className = 'message-content';
+            messageContent.textContent = content;
+            
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(messageContent);
+            messagesContainer.appendChild(messageDiv);
+            
+            scrollToBottom();
+        }
+
+        function showTypingIndicator() {
+            if (isTyping) return;
+            
+            isTyping = true;
+            const messagesContainer = document.getElementById('messages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message';
+            typingDiv.id = 'typing-indicator';
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.textContent = 'A';
+            
+            const typingContent = document.createElement('div');
+            typingContent.className = 'message-content';
+            
+            const typingIndicator = document.createElement('div');
+            typingIndicator.className = 'typing-indicator';
+            
+            for (let i = 0; i < 3; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'typing-dot';
+                typingIndicator.appendChild(dot);
+            }
+            
+            typingContent.appendChild(typingIndicator);
+            typingDiv.appendChild(avatar);
+            typingDiv.appendChild(typingContent);
+            messagesContainer.appendChild(typingDiv);
+            
+            scrollToBottom();
+        }
+
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+            isTyping = false;
+        }
+
+        function scrollToBottom() {
+            const messagesContainer = document.getElementById('messages');
+            if (messagesContainer) {
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDisplay();
+            
+            // Adicionar event listeners para acessibilidade
+            document.querySelectorAll('.ticket-option').forEach(option => {
+                option.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        const quantity = parseInt(this.dataset.quantity);
+                        selectQuantity(quantity);
+                    }
+                });
+            });
+            
+            // Event listener para fechar assistente com Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    const dialog = document.getElementById('assistant-dialog');
+                    if (dialog.style.display === 'flex') {
+                        closeAssistant();
+                    }
+                }
+            });
+            
+            // Prevenir envio do formulário vazio
+            const messageInput = document.getElementById('message-input');
+            const sendButton = document.getElementById('send-button');
+            
+            if (messageInput && sendButton) {
+                messageInput.addEventListener('input', function() {
+                    sendButton.disabled = !this.value.trim();
+                });
+            }
+        });
+
+        // Service Worker para cache (opcional)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                // Registrar service worker se necessário
+                // navigator.serviceWorker.register('/sw.js');
+            });
+        }
+
+        // Analytics básico (opcional)
+        function trackEvent(eventName, eventData) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, eventData);
+            }
+            
+            // Ou usar outra ferramenta de analytics
+            console.log('Event:', eventName, eventData);
+        }
+
+        // Rastrear seleção de quantidade
+        function selectQuantity(quantity) {
+            if (CONFIG.ticketOptions.includes(quantity)) {
+                const oldQuantity = currentQuantity;
+                currentQuantity = quantity;
+                updateDisplay();
+                
+                // Analytics
+                trackEvent('quantity_selected', {
+                    'previous_quantity': oldQuantity,
+                    'new_quantity': quantity,
+                    'price': quantity * CONFIG.pricePerTicket
+                });
+                
+                // Feedback visual
+                const option = document.querySelector(`[data-quantity="${quantity}"]`);
+                if (option) {
+                    option.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        option.style.transform = '';
+                    }, 150);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+```</newStr>
+<newStr>### Arquivo HTML para Hostinger
+
+O código HTML estático foi movido para um arquivo separado para facilitar a cópia.</newStr>
+</edit>
+</edits>
+<screenshotRoute>/</screenshotRoute>
+</editAndSaveFiles>
